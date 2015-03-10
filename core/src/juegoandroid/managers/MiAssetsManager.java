@@ -22,6 +22,8 @@ public class MiAssetsManager{
         manager.load("animaciones/narutoAirThrow.png",Texture.class);
         manager.load("animaciones/narutoWin.png",Texture.class);
         manager.load("animaciones/kunai.png",Texture.class);
+        manager.load("gameover.png",Texture.class);
+        manager.load("pantallaInicio.png",Texture.class);
         manager.finishLoading();
     }
 

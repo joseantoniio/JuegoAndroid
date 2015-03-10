@@ -2,10 +2,6 @@ package juegoandroid.managers;
 
 import com.badlogic.gdx.utils.Array;
 
-import java.util.Iterator;
-
-import juegoandroid.JuegoAndroid;
-import juegoandroid.entidades.Kunai;
 import juegoandroid.entidades.MiEntidad;
 
 /**
@@ -32,6 +28,10 @@ public class EntidadesManager {
     public static void eliminarEntidad(MiEntidad entidad){
         entidad.getCuerpo().setUserData("DELETE");
         entidades.removeValue(entidad,true);
+    }
+
+    public static void clear(){
+        entidades.clear();
     }
 
     /*

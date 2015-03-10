@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 
 import juegoandroid.entidades.Kunai;
 import juegoandroid.managers.EntidadesManager;
+import juegoandroid.pantallas.PantallaJuego;
 
 /**
  * Created by jose on 01/03/2015.
@@ -42,7 +43,7 @@ public class MiContactListener implements ContactListener {
         //Si los pies entran en contacto con un trampolin se le aplica un impulso hacia arriba
         //(Sensor pies)
         if( b.getUserData()=="Pies" && a.getUserData()=="Trampolin"){
-            pantallaJuego.getPersonaje().aplicarImpulso(new Vector2(0,9.5f));
+            pantallaJuego.getPersonaje().aplicarImpulso(new Vector2(0, 9.5f));
         }
 
         if( b.getUserData()=="Pies" && a.getUserData()=="Hielo"){

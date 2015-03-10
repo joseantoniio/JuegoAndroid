@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 import juegoandroid.MiMundo;
-import juegoandroid.PantallaJuego;
+import juegoandroid.pantallas.PantallaJuego;
 import juegoandroid.PersonajeInputAdapter;
 import juegoandroid.animaciones.AnimacionPersonaje;
 import juegoandroid.managers.EntidadesManager;
@@ -33,8 +33,7 @@ public class Personaje extends MiEntidad{
         Gdx.input.setInputProcessor(new PersonajeInputAdapter(this));
         sprite.setSize(65, 53);
         sprite.setPosition(10, 50);
-        POSICION_INICIAL=new Vector2(65/MiMundo.CONVERSOR,53/MiMundo.CONVERSOR);
-        checkpoint=POSICION_INICIAL;
+        POSICION_INICIAL=new Vector2(10/MiMundo.CONVERSOR,50/MiMundo.CONVERSOR);
         crearHitbox();
         velocidad=2.5f;
     }
@@ -91,9 +90,9 @@ public class Personaje extends MiEntidad{
         pantallaJuego.getCamara().position.set(cuerpo.getPosition().x*100f+250* pantallaJuego.getCamara().zoom,
                                         30*15/2,0);
         if(cuerpo.getPosition().y<0) {
-            velocidad=2.5f;
-            //cuerpo.setTransform(POSICION_INICIAL, cuerpo.getAngle());
-            cuerpo.setTransform(checkpoint,cuerpo.getAngle());
+            cuerpo.setTransform(POSICION_INICIAL, cuerpo.getAngle());
+            pantallaJuego.gameOver();
+            EntidadesManager.clear();
         }
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
             checkpoint=new Vector2(50,10);

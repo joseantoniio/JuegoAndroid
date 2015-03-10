@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 import juegoandroid.MiMundo;
-import juegoandroid.PantallaJuego;
+import juegoandroid.pantallas.PantallaJuego;
 import juegoandroid.animaciones.AnimacionKunai;
 import juegoandroid.managers.EntidadesManager;
 import juegoandroid.managers.MainFixtureBodyManager;

@@ -3,7 +3,7 @@ package juegoandroid.entidades;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.physics.box2d.Body;
 
-import juegoandroid.PantallaJuego;
+import juegoandroid.pantallas.PantallaJuego;
 import juegoandroid.MiMundo;
 import juegoandroid.animaciones.MiAnimacion;
 

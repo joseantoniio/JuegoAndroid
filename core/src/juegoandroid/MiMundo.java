@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.Array;
 
 import juegoandroid.managers.MainFixtureBodyManager;
 import juegoandroid.managers.MiAssetsManager;
+import juegoandroid.pantallas.PantallaJuego;
 
 /**
  * Created by jose on 01/03/2015.
