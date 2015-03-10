@@ -3,7 +3,7 @@ package juegoandroid.entidades;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.physics.box2d.Body;
 
-import juegoandroid.JuegoAndroid;
+import juegoandroid.PantallaJuego;
 import juegoandroid.MiMundo;
 import juegoandroid.animaciones.MiAnimacion;
 
@@ -12,13 +12,13 @@ import juegoandroid.animaciones.MiAnimacion;
  */
 public abstract class MiEntidad {
 
-    protected JuegoAndroid juegoAndroid;
+    protected PantallaJuego pantallaJuego;
     protected Sprite sprite;
     protected Body cuerpo;
     protected MiAnimacion animacion;
 
-    public MiEntidad(JuegoAndroid juegoAndroid){
-        this.juegoAndroid=juegoAndroid;
+    public MiEntidad(PantallaJuego pantallaJuego){
+        this.pantallaJuego = pantallaJuego;
         this.sprite=new Sprite();
     }
 
@@ -29,7 +29,7 @@ public abstract class MiEntidad {
         //Colocamos el sprite en la posición del cuerpo
         sprite.setPosition(cuerpo.getPosition().x * MiMundo.CONVERSOR,
                 cuerpo.getPosition().y * MiMundo.CONVERSOR);
-        sprite.draw(juegoAndroid.getSpriteBatch());
+        sprite.draw(pantallaJuego.getSpriteBatch());
     }
 
     public Sprite getSprite(){return sprite;}

@@ -7,8 +7,8 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
-import juegoandroid.JuegoAndroid;
 import juegoandroid.MiMundo;
+import juegoandroid.PantallaJuego;
 import juegoandroid.animaciones.AnimacionKunai;
 import juegoandroid.managers.EntidadesManager;
 import juegoandroid.managers.MainFixtureBodyManager;
@@ -25,7 +25,7 @@ public class Kunai extends MiEntidad{
     private boolean isStaticBody;
     private float tiempoClavado;
 
-    public Kunai(JuegoAndroid juegoAndroid){
+    public Kunai(PantallaJuego juegoAndroid){
         super(juegoAndroid);
         EntidadesManager.anhadirEntidad(this);
         animacion=new AnimacionKunai();
@@ -34,11 +34,11 @@ public class Kunai extends MiEntidad{
     }
 
     private void crearCuerpo(){
-        Sprite spritePersonaje= juegoAndroid.getPersonaje().getSprite();
+        Sprite spritePersonaje= pantallaJuego.getPersonaje().getSprite();
         Rectangle rectangle=sprite.getBoundingRectangle();
         rectangle.setPosition(spritePersonaje.getX()+spritePersonaje.getWidth(),
                 spritePersonaje.getY()+25);
-        cuerpo= MainFixtureBodyManager.colisionRectangulo(juegoAndroid.getWorld(), rectangle, "CuerpoKunai");
+        cuerpo= MainFixtureBodyManager.colisionRectangulo(pantallaJuego.getWorld(), rectangle, "CuerpoKunai");
         cuerpo.setType(BodyDef.BodyType.DynamicBody);
         cuerpo.setGravityScale(0);
 
@@ -83,9 +83,5 @@ public class Kunai extends MiEntidad{
 
     public void isStaticBody(boolean staticBody){
         this.isStaticBody =staticBody;
-    }
-
-    public static float getVelocidad(){
-        return velocidad;
     }
 }

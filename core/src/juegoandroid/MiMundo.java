@@ -20,18 +20,20 @@ import juegoandroid.managers.MiAssetsManager;
  */
 public class MiMundo {
 
+    public final static int ANCHO=600;
+    public final static int ALTO=450;
     public static final float CONVERSOR=100f;
 
     private World mundo;
-    private JuegoAndroid juegoAndroid;
+    private PantallaJuego pantallaJuego;
     private Box2DDebugRenderer mundoDebug;
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
 
-    public MiMundo(JuegoAndroid juegoAndroid){
-        this.juegoAndroid = juegoAndroid;
+    public MiMundo(PantallaJuego pantallaJuego){
+        this.pantallaJuego = pantallaJuego;
         mundo=new World(new Vector2(0,-9.8f),true);
-        mundo.setContactListener(new MiContactListener(juegoAndroid));
+        mundo.setContactListener(new MiContactListener(pantallaJuego));
         mundoDebug=new Box2DDebugRenderer();
         tiledMap= MiAssetsManager.getManager().get("mapas/level1.tmx",TiledMap.class);
         tiledMapRenderer=new OrthogonalTiledMapRenderer(tiledMap);
@@ -57,7 +59,7 @@ public class MiMundo {
                     //(por eso su posición es 0) para transformar los árboles en sensores
                     body.getFixtureList().get(0).setSensor(true);
                 }else if(mapObject.getProperties().containsKey("hielo")) {
-                    Body body = MainFixtureBodyManager.colisionRectangulo(mundo,
+                    MainFixtureBodyManager.colisionRectangulo(mundo,
                             ((RectangleMapObject) mapObject).getRectangle(), "Hielo");
                 }else if(mapObject.getProperties().containsKey("fin")) {
                     Body body = MainFixtureBodyManager.colisionRectangulo(mundo,
@@ -73,10 +75,10 @@ public class MiMundo {
     }
 
     public void render(float delta){
-        tiledMapRenderer.setView(juegoAndroid.camara);
+        tiledMapRenderer.setView(pantallaJuego.getCamara());
         mundo.step(delta,8,6);
         tiledMapRenderer.render();
-        mundoDebug.render(mundo, juegoAndroid.camara.combined.cpy().scl(CONVERSOR));
+        mundoDebug.render(mundo, pantallaJuego.getCamara().combined.cpy().scl(CONVERSOR));
         borrarCuerposMarcados();
     }
 

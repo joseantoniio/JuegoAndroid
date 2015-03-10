@@ -16,10 +16,10 @@ import juegoandroid.managers.EntidadesManager;
  */
 public class MiContactListener implements ContactListener {
 
-    private JuegoAndroid juegoAndroid;
+    private PantallaJuego pantallaJuego;
 
-    public MiContactListener(JuegoAndroid juegoAndroid){
-        this.juegoAndroid = juegoAndroid;
+    public MiContactListener(PantallaJuego pantallaJuego){
+        this.pantallaJuego = pantallaJuego;
     }
 
     @Override
@@ -36,28 +36,28 @@ public class MiContactListener implements ContactListener {
         //(Usamos el sensor para colisión lateral)
         if(b.getUserData()=="Lateral" &&
                 (a.getUserData()=="RectanguloTerreno" || a.getUserData()=="PoligonoTerreno")){
-            juegoAndroid.personaje.setVelocidad(0);
+            pantallaJuego.getPersonaje().setVelocidad(0);
         }
 
         //Si los pies entran en contacto con un trampolin se le aplica un impulso hacia arriba
         //(Sensor pies)
         if( b.getUserData()=="Pies" && a.getUserData()=="Trampolin"){
-            juegoAndroid.personaje.aplicarImpulso(new Vector2(0,9.5f));
+            pantallaJuego.getPersonaje().aplicarImpulso(new Vector2(0,9.5f));
         }
 
         if( b.getUserData()=="Pies" && a.getUserData()=="Hielo"){
-            juegoAndroid.personaje.setVelocidad(5);
+            pantallaJuego.getPersonaje().setVelocidad(5);
             Kunai.setVelocidad(10);
         }
 
         //Si los pies entran en contacto con algo, está apoyado
         if(b.getUserData()=="Pies")
-            juegoAndroid.personaje.setApoyado(true);
+            pantallaJuego.getPersonaje().setApoyado(true);
 
         //Si el personaje choca contra un kunai estático(clavado en un árbol),pierde su velocidad
         if(a.getUserData()=="Lateral" &&
                 b.getUserData()=="CuerpoKunai" && b.getBody().getType()== BodyDef.BodyType.StaticBody)
-            juegoAndroid.personaje.setVelocidad(0);
+            pantallaJuego.getPersonaje().setVelocidad(0);
 
         //El objeto kunai viene referenciado por el contacto de la punta del kunai
         if(b.getUserData() instanceof Kunai)
@@ -76,7 +76,7 @@ public class MiContactListener implements ContactListener {
             EntidadesManager.eliminarEntidad((Kunai) a.getUserData());
 
         if(b.getUserData()=="Personaje" && a.getUserData()=="Puerta")
-            juegoAndroid.personaje.ganar();
+            pantallaJuego.getPersonaje().ganar();
 
     }
 
@@ -89,12 +89,12 @@ public class MiContactListener implements ContactListener {
         //del terreno
         if((a.getUserData()=="RectanguloTerreno" || a.getUserData()=="PoligonoTerreno")
                 && b.getUserData()=="Lateral"){
-            juegoAndroid.personaje.setVelocidad(2.5f);
+            pantallaJuego.getPersonaje().setVelocidad(2.5f);
         }
 
         //Cuando los pies dejan de estar en contacto no está apoyado
         if(a.getUserData()=="Pies" || b.getUserData()=="Pies")
-            juegoAndroid.personaje.setApoyado(false);
+            pantallaJuego.getPersonaje().setApoyado(false);
     }
 
     @Override

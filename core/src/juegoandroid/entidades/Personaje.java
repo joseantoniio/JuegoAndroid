@@ -5,13 +5,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.MassData;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
-import java.util.Vector;
-
-import juegoandroid.JuegoAndroid;
 import juegoandroid.MiMundo;
+import juegoandroid.PantallaJuego;
 import juegoandroid.PersonajeInputAdapter;
 import juegoandroid.animaciones.AnimacionPersonaje;
 import juegoandroid.managers.EntidadesManager;
@@ -29,8 +26,8 @@ public class Personaje extends MiEntidad{
     private boolean apoyado;
     private Vector2 checkpoint;
 
-    public Personaje(JuegoAndroid juegoAndroid){
-        super(juegoAndroid);
+    public Personaje(PantallaJuego pantallaJuego){
+        super(pantallaJuego);
         EntidadesManager.anhadirEntidad(this);
         animacion=new AnimacionPersonaje();
         Gdx.input.setInputProcessor(new PersonajeInputAdapter(this));
@@ -44,11 +41,11 @@ public class Personaje extends MiEntidad{
 
     private void crearHitbox(){
         //Crea un cuerpo y una fixture cuadrados con tamaño igual al sprite
-        cuerpo= MainFixtureBodyManager.colisionRectangulo(juegoAndroid.getWorld(),
+        cuerpo= MainFixtureBodyManager.colisionRectangulo(pantallaJuego.getWorld(),
                 sprite.getBoundingRectangle(), "Personaje");
         //Como el método anterior crea los cuerpo estáticos, especificamos que debe ser dinámico
         cuerpo.setType(BodyDef.BodyType.DynamicBody);
-        cuerpo.setMassData(new MassData());
+        //cuerpo.setMassData(new MassData());
 
         //Fixture sensor para colisión lateral
         PolygonShape shapeLateral =new PolygonShape();
@@ -91,7 +88,7 @@ public class Personaje extends MiEntidad{
         //Modificaremos solo la velocidad en el eje x
         cuerpo.setLinearVelocity(velocidad,cuerpo.getLinearVelocity().y);
         //Colocamos la cámara en la posición deseada en cada movimiento, así se moverá al mismo tiempo
-        juegoAndroid.getCamara().position.set(cuerpo.getPosition().x*100f+250*juegoAndroid.getCamara().zoom,
+        pantallaJuego.getCamara().position.set(cuerpo.getPosition().x*100f+250* pantallaJuego.getCamara().zoom,
                                         30*15/2,0);
         if(cuerpo.getPosition().y<0) {
             velocidad=2.5f;
@@ -119,7 +116,7 @@ public class Personaje extends MiEntidad{
     public void disparar(){
         ((AnimacionPersonaje)animacion).setAnimationPersonaje(
                 AnimacionPersonaje.ANIMACION_ACTUAL.AIRTHROW);
-        new Kunai(juegoAndroid);
+        new Kunai(pantallaJuego);
     }
 
     public void ganar(){
@@ -135,5 +132,4 @@ public class Personaje extends MiEntidad{
     }
 
     public boolean isApoyado(){return apoyado;}
-    public float getVelocidad(){return velocidad;}
 }
