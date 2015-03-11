@@ -23,6 +23,7 @@ public class PantallaJuego implements Screen {
     private SpriteBatch spriteBatch;
     private JuegoAndroid juegoAndroid;
     private boolean ganar;
+    private boolean perder;
 
     public PantallaJuego(JuegoAndroid juegoAndroid){
         this.juegoAndroid=juegoAndroid;
@@ -51,6 +52,10 @@ public class PantallaJuego implements Screen {
         spriteBatch.end();
         if(ganar)
             juegoAndroid.setScreen(new PantallaPresentacion(juegoAndroid));
+        if(perder) {
+            juegoAndroid.setScreen(new PantallaGameOver(juegoAndroid, this));
+            perder=false;
+        }
     }
 
     @Override
@@ -83,7 +88,7 @@ public class PantallaJuego implements Screen {
 
     public void perderJuego(){
         EntidadesManager.clear();
-        juegoAndroid.setScreen(new PantallaGameOver(juegoAndroid,this));
+        perder=true;
     }
 
     public void ganarJuego(){

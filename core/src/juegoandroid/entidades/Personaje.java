@@ -1,12 +1,14 @@
 package juegoandroid.entidades;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 import juegoandroid.MiMundo;
+import juegoandroid.managers.MiAssetsManager;
 import juegoandroid.pantallas.PantallaJuego;
 import juegoandroid.PersonajeInputAdapter;
 import juegoandroid.animaciones.AnimacionPersonaje;
@@ -105,13 +107,16 @@ public class Personaje extends MiEntidad{
 
     public void saltar(){
         //Solo puede saltar si se encuentra apoyado
-        if(apoyado)
+        if(apoyado) {
+            MiAssetsManager.getManager().get("sonidos/jump_air.mp3",Sound.class).play();
             cuerpo.applyLinearImpulse(new Vector2(0, 3.5f), cuerpo.getWorldCenter(), true);
+        }
     }
 
     public void disparar(){
-        ((AnimacionPersonaje)animacion).setAnimationPersonaje(
-                AnimacionPersonaje.ANIMACION_ACTUAL.AIRTHROW);
+        MiAssetsManager.getManager().get("sonidos/knife_slash1.mp3", Sound.class).play();
+        ((AnimacionPersonaje) animacion).setAnimationPersonaje(
+                        AnimacionPersonaje.ANIMACION_ACTUAL.AIRTHROW);
         new Kunai(pantallaJuego);
     }
 

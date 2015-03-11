@@ -54,6 +54,7 @@ public class PantallaGameOver implements Screen, InputProcessor{
         spriteBatch.draw(texture,0,0,MiMundo.ANCHO,MiMundo.ALTO);
         spriteBatch.end();
 
+        /*
         //Debug
         ShapeRenderer shapeRenderer=new ShapeRenderer();
         shapeRenderer.setProjectionMatrix(camara.combined);
@@ -61,6 +62,7 @@ public class PantallaGameOver implements Screen, InputProcessor{
         shapeRenderer.rect(rectangleReiniciar.x, rectangleReiniciar.y, rectangleReiniciar.width, rectangleReiniciar.height);
         shapeRenderer.rect(rectangleSalir.x,rectangleSalir.y,rectangleSalir.width,rectangleSalir.height);
         shapeRenderer.end();
+        */
     }
 
     @Override

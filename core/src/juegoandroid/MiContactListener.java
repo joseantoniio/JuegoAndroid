@@ -1,5 +1,6 @@
 package juegoandroid;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 
 import juegoandroid.entidades.Kunai;
 import juegoandroid.managers.EntidadesManager;
+import juegoandroid.managers.MiAssetsManager;
 import juegoandroid.pantallas.PantallaJuego;
 
 /**
@@ -43,6 +45,7 @@ public class MiContactListener implements ContactListener {
         //Si los pies entran en contacto con un trampolin se le aplica un impulso hacia arriba
         //(Sensor pies)
         if( b.getUserData()=="Pies" && a.getUserData()=="Trampolin"){
+            MiAssetsManager.getManager().get("sonidos/leap_whoosh.mp3", Sound.class).play();
             pantallaJuego.getPersonaje().aplicarImpulso(new Vector2(0, 9.5f));
         }
 

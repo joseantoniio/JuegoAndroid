@@ -101,6 +101,7 @@ public class PantallaPresentacion implements Screen,InputProcessor {
         spriteBatch.draw(texture,0,0,MiMundo.ANCHO,MiMundo.ALTO);
         spriteBatch.end();
 
+        /*
         //Debug
         ShapeRenderer shapeRenderer=new ShapeRenderer();
         shapeRenderer.setProjectionMatrix(camara.combined);
@@ -109,6 +110,7 @@ public class PantallaPresentacion implements Screen,InputProcessor {
         shapeRenderer.rect(rectangleSalir.x,rectangleSalir.y,rectangleSalir.width,rectangleSalir.height);
         shapeRenderer.end();
         shapeRenderer.dispose();
+        */
     }
 
     @Override

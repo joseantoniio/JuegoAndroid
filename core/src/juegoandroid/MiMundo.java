@@ -79,7 +79,7 @@ public class MiMundo {
         tiledMapRenderer.setView(pantallaJuego.getCamara());
         mundo.step(delta,8,6);
         tiledMapRenderer.render();
-        mundoDebug.render(mundo, pantallaJuego.getCamara().combined.cpy().scl(CONVERSOR));
+        //mundoDebug.render(mundo, pantallaJuego.getCamara().combined.cpy().scl(CONVERSOR));
         borrarCuerposMarcados();
     }
 
