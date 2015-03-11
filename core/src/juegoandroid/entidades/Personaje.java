@@ -1,7 +1,6 @@
 package juegoandroid.entidades;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -24,12 +23,13 @@ public class Personaje extends MiEntidad{
 
     private float velocidad;
     private boolean apoyado;
-    private Vector2 checkpoint;
 
     public Personaje(PantallaJuego pantallaJuego){
         super(pantallaJuego);
         EntidadesManager.anhadirEntidad(this);
-        animacion=new AnimacionPersonaje();
+        //Por si fuera modificada la velocidad de los kunais, la volvemos a su velocidad inicial
+        Kunai.setVelocidad(5);
+        animacion=new AnimacionPersonaje(this);
         Gdx.input.setInputProcessor(new PersonajeInputAdapter(this));
         sprite.setSize(65, 53);
         sprite.setPosition(10, 50);
@@ -91,11 +91,9 @@ public class Personaje extends MiEntidad{
                                         30*15/2,0);
         if(cuerpo.getPosition().y<0) {
             cuerpo.setTransform(POSICION_INICIAL, cuerpo.getAngle());
-            pantallaJuego.gameOver();
+            pantallaJuego.perderJuego();
             EntidadesManager.clear();
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
-            checkpoint=new Vector2(50,10);
     }
 
     public void setVelocidad(float velocidad){
@@ -121,8 +119,7 @@ public class Personaje extends MiEntidad{
     public void ganar(){
         sprite.setSize(58,96);
         ((AnimacionPersonaje)animacion).setAnimationPersonaje(
-                AnimacionPersonaje.ANIMACION_ACTUAL.WIN
-        );
+                AnimacionPersonaje.ANIMACION_ACTUAL.WIN);
     }
 
     public void aplicarImpulso(Vector2 impulso){

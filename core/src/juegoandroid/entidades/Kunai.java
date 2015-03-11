@@ -28,7 +28,7 @@ public class Kunai extends MiEntidad{
     public Kunai(PantallaJuego juegoAndroid){
         super(juegoAndroid);
         EntidadesManager.anhadirEntidad(this);
-        animacion=new AnimacionKunai();
+        animacion=new AnimacionKunai(this);
         sprite.setSize(27, 16);
         crearCuerpo();
     }

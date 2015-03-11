@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import juegoandroid.entidades.MiEntidad;
 import juegoandroid.managers.MiAssetsManager;
 
 
@@ -18,7 +19,8 @@ public class AnimacionPersonaje extends MiAnimacion{
 
     private ANIMACION_ACTUAL animacion_actual;
 
-    public AnimacionPersonaje(){
+    public AnimacionPersonaje(MiEntidad entidad){
+        super(entidad);
         animacion_actual=ANIMACION_ACTUAL.CORRER;
         animation=getAnimationRun();
         loopAnimacion=true;
@@ -30,6 +32,8 @@ public class AnimacionPersonaje extends MiAnimacion{
         if(animacion_actual!= ANIMACION_ACTUAL.CORRER && animacion_actual!=ANIMACION_ACTUAL.WIN
                 && animation.getAnimationDuration()<duracion)
             setAnimationPersonaje(ANIMACION_ACTUAL.CORRER);
+        if(animacion_actual==ANIMACION_ACTUAL.WIN && animation.getAnimationDuration()<duracion)
+            entidad.getPantallaJuego().ganarJuego();
         return animation.getKeyFrame(duracion,loopAnimacion);
     }
 

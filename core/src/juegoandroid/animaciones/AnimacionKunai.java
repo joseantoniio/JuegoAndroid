@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import juegoandroid.entidades.MiEntidad;
 import juegoandroid.managers.MiAssetsManager;
 
 /**
@@ -11,7 +12,8 @@ import juegoandroid.managers.MiAssetsManager;
  */
 public class AnimacionKunai extends MiAnimacion{
 
-    public AnimacionKunai(){
+    public AnimacionKunai(MiEntidad entidad){
+        super(entidad);
         animation=getAnimationKunai();
     }
 

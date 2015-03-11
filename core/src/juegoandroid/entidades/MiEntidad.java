@@ -32,6 +32,7 @@ public abstract class MiEntidad {
         sprite.draw(pantallaJuego.getSpriteBatch());
     }
 
+    public PantallaJuego getPantallaJuego(){return pantallaJuego;}
     public Sprite getSprite(){return sprite;}
     public Body getCuerpo(){return cuerpo;}
 }

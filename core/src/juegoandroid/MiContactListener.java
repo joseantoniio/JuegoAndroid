@@ -52,7 +52,9 @@ public class MiContactListener implements ContactListener {
         }
 
         //Si los pies entran en contacto con algo, está apoyado
-        if(b.getUserData()=="Pies")
+        if(b.getUserData()=="Pies" && a.getUserData()!="Arbol")
+            pantallaJuego.getPersonaje().setApoyado(true);
+        if(a.getUserData()=="Pies" && b.getUserData() instanceof Kunai)
             pantallaJuego.getPersonaje().setApoyado(true);
 
         //Si el personaje choca contra un kunai estático(clavado en un árbol),pierde su velocidad
