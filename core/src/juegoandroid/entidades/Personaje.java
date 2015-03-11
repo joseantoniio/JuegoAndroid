@@ -92,7 +92,6 @@ public class Personaje extends MiEntidad{
         if(cuerpo.getPosition().y<0) {
             cuerpo.setTransform(POSICION_INICIAL, cuerpo.getAngle());
             pantallaJuego.perderJuego();
-            EntidadesManager.clear();
         }
     }
 

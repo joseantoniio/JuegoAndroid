@@ -21,8 +21,8 @@ import juegoandroid.pantallas.PantallaJuego;
  */
 public class MiMundo {
 
-    public final static int ANCHO=600;
-    public final static int ALTO=450;
+    public static final int ANCHO=600;
+    public static final int ALTO=450;
     public static final float CONVERSOR=100f;
 
     private World mundo;
