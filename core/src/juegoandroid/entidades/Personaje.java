@@ -89,7 +89,7 @@ public class Personaje extends MiEntidad{
         //Modificaremos solo la velocidad en el eje x
         cuerpo.setLinearVelocity(velocidad,cuerpo.getLinearVelocity().y);
         //Colocamos la cámara en la posición deseada en cada movimiento, así se moverá al mismo tiempo
-        pantallaJuego.getCamara().position.set(cuerpo.getPosition().x*100f+250* pantallaJuego.getCamara().zoom,
+        pantallaJuego.getCamara().position.set(cuerpo.getPosition().x*100f+Gdx.graphics.getWidth()/2f*pantallaJuego.getCamara().zoom,
                                         30*15/2,0);
         if(cuerpo.getPosition().y<0) {
             cuerpo.setTransform(POSICION_INICIAL, cuerpo.getAngle());

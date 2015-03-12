@@ -10,8 +10,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.Array;
 
+import juegoandroid.managers.EntidadesManager;
 import juegoandroid.managers.MainFixtureBodyManager;
 import juegoandroid.managers.MiAssetsManager;
 import juegoandroid.pantallas.PantallaJuego;
@@ -80,7 +80,8 @@ public class MiMundo {
         mundo.step(delta,8,6);
         tiledMapRenderer.render();
         //mundoDebug.render(mundo, pantallaJuego.getCamara().combined.cpy().scl(CONVERSOR));
-        borrarCuerposMarcados();
+        //borrarCuerposMarcados();
+        EntidadesManager.borrarCuerposMarcados(mundo);
     }
 
     public void dispose(){
@@ -89,6 +90,7 @@ public class MiMundo {
         mundo.dispose();
     }
 
+    /*
     private void borrarCuerposMarcados(){
         Array<Body> cuerpos=new Array();
         mundo.getBodies(cuerpos);
@@ -102,6 +104,7 @@ public class MiMundo {
             }
         }
     }
+    */
 
     public World getWorld(){return mundo;}
 }
