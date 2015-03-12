@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -20,13 +19,12 @@ public class PantallaJuego implements Screen {
 
     private MiMundo mundo;
     private OrthographicCamera camara;
-    private OrthographicCamera camaraDatos;
     private Personaje personaje;
     private SpriteBatch spriteBatch;
     private JuegoAndroid juegoAndroid;
+    private HUD hud;
     private boolean ganar;
     private boolean perder;
-    BitmapFont font;
 
     public PantallaJuego(JuegoAndroid juegoAndroid){
         this.juegoAndroid=juegoAndroid;
@@ -37,13 +35,11 @@ public class PantallaJuego implements Screen {
     public void show() {
         spriteBatch=new SpriteBatch();
         camara=new OrthographicCamera();
-        camaraDatos=new OrthographicCamera();
         //camara.setToOrtho(false,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         camara.setToOrtho(false,MiMundo.ANCHO,MiMundo.ALTO);
-        camaraDatos.setToOrtho(false,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         mundo=new MiMundo(this);
         personaje=new Personaje(this);
-        font=new BitmapFont();
+        hud=new HUD();
     }
 
     @Override
@@ -56,10 +52,7 @@ public class PantallaJuego implements Screen {
         spriteBatch.begin();
         EntidadesManager.render(delta);
         spriteBatch.end();
-        spriteBatch.setProjectionMatrix(camaraDatos.combined);
-        spriteBatch.begin();
-        font.draw(spriteBatch,"FPS: " + Gdx.graphics.getFramesPerSecond(),10, 20);
-        spriteBatch.end();
+        hud.render();
         if(ganar)
             juegoAndroid.setScreen(new PantallaPresentacion(juegoAndroid));
         if(perder) {
