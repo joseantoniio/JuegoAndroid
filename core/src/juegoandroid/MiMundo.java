@@ -24,6 +24,7 @@ public class MiMundo {
     public static final int ANCHO=600;
     public static final int ALTO=450;
     public static final float CONVERSOR=100f;
+    public static int ANCHO_TOTAL;
 
     private World mundo;
     private PantallaJuego pantallaJuego;
@@ -38,6 +39,7 @@ public class MiMundo {
         mundoDebug=new Box2DDebugRenderer();
         tiledMap= MiAssetsManager.getManager().get("mapas/level1.tmx",TiledMap.class);
         tiledMapRenderer=new OrthogonalTiledMapRenderer(tiledMap);
+        ANCHO_TOTAL=tiledMap.getProperties().get("width",Integer.class)*15;
         crearColisiones();
     }
 

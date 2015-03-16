@@ -21,7 +21,7 @@ public class PersonajeInputAdapter extends InputAdapter {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
         //Variable para testeo rápido
-        boolean android=true;
+        boolean android=false;
 
         if(android) {
             if (screenX < Gdx.graphics.getWidth() / 2)

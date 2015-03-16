@@ -87,6 +87,7 @@ public class PantallaJuego implements Screen {
         System.out.println("Muere");
         mundo.dispose();
         spriteBatch.dispose();
+        hud.dispose();
     }
 
     public void perderJuego(){
